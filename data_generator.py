@@ -3,10 +3,11 @@ from typing import Any
 
 import pandas as pd
 import sqlalchemy as sa
-from config import DB_URL
 from sklearn.datasets import load_iris
 from sqlalchemy import create_engine
-from tables import iris_data_table
+
+from app.config import DB_URL
+from app.tables import iris_data_table
 
 engine = create_engine(DB_URL)
 
@@ -25,8 +26,8 @@ def get_data() -> pd.DataFrame:
 
 
 def insert_data(data: dict[str, Any]) -> None:
-    query = sa.insert(iris_data_table).values(data)
-    with engine.connect() as conn:
+    query = sa.insert(iris_data_table).values(**data)
+    with engine.begin() as conn:
         conn.execute(query)
 
 

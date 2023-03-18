@@ -2,4 +2,4 @@
 
 poetry install --sync
 alembic upgrade head
-python app/data_generator.py
+python data_generator.py

@@ -11,7 +11,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-U", "myuser", "-d", "mydatabase"]
+      test: ["CMD", "pg_isready", "-q", "-U", "user", "-d", "mydatabase"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: data_generator
-    env-file:
+    env_file:
       - .env
     volumes:
       - .:/workspace
