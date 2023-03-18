@@ -10,6 +10,33 @@ services:
       - POSTGRES_DB=mydatabase
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-U", "myuser", "-d", "mydatabase"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  data_generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: data_generator
+    env-file:
+      - .env
+    volumes:
+      - .:/workspace
+      - python-packages:/usr/local/lib/python3.10/site-packages
+      - python-bin:/usr/local/bin
+    depends_on:
+      db:
+        condition: service_healthy
+    command: /bin/bash scripts/start_generator.sh
 
 volumes:
   db_data:
+  python-packages:
+  python-bin:
+
+networks:
+  default:
+    name: mlops-network

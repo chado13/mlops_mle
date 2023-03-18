@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["kairo"]
 readme = "README.md"
-packages = [{include = "mlops_mle"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,6 +12,7 @@ psycopg2-binary = "^2.9.5"
 scikit-learn = "^1.2.2"
 sqlalchemy = "^2.0.6"
 alembic = "^1.10.2"
+python-dotenv = "^1.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
