@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "mlops-mle"
+version = "0.1.0"
+description = ""
+authors = ["kairo"]
+readme = "README.md"
+packages = [{include = "mlops_mle"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
